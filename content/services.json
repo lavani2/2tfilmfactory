@@ -1,0 +1,17 @@
+{
+  "service1": {
+    "title": "Portraits Corporate",
+    "description": "Headshots professionnels, photos d'équipes et portraits individuels qui inspirent confiance à vos clients et partenaires.",
+    "items": ["Portrait individuel en studio ou sur site", "Photos d'équipe et de direction", "Retouche professionnelle incluse", "Livraison en 48h"]
+  },
+  "service2": {
+    "title": "Événements Pro",
+    "description": "Conférences, séminaires, lancements de produits, soirées d'entreprise — chaque moment important capturé avec précision.",
+    "items": ["Couverture complète de l'événement", "Photos d'ambiance & de networking", "Reportage documentaire naturel", "Galerie privée en ligne"]
+  },
+  "service3": {
+    "title": "Photo Produit",
+    "description": "E-commerce, catalogues, lookbooks — des visuels produits qui vendent. Mise en scène soignée, éclairage professionnel.",
+    "items": ["Fond blanc & mise en scène créative", "Shooting lifestyle & ambiance", "Optimisé réseaux sociaux & web", "Retouche & détourage inclus"]
+  }
+}

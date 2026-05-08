@@ -1,0 +1,152 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "static/uploads"
+public_folder: "/static/uploads"
+
+locale: fr
+
+collections:
+  # ─── PAGE PRINCIPALE ───────────────────────────────────────────
+  - name: "site"
+    label: "⚙️ Réglages du site"
+    files:
+      - name: "general"
+        label: "Informations générales"
+        file: "content/general.json"
+        fields:
+          - { label: "Titre du site", name: "site_title", widget: "string", default: "2T Film Factory — Photographe Corporate Paris" }
+          - { label: "Email de contact", name: "email", widget: "string", default: "contact@2tfilmfactory.com" }
+          - { label: "Téléphone", name: "phone", widget: "string", default: "+33 6 00 00 00 00" }
+          - { label: "Zone d'intervention", name: "zone", widget: "string", default: "Paris & Île-de-France — déplacements toute France" }
+          - { label: "Lien YouTube", name: "youtube", widget: "string", default: "https://www.youtube.com/@2TFilmFactory" }
+          - { label: "Lien Instagram", name: "instagram", widget: "string", default: "https://www.instagram.com/2tfilmfactory/" }
+
+  # ─── SECTION HERO ─────────────────────────────────────────────
+  - name: "hero"
+    label: "🏠 Section Hero (accueil)"
+    files:
+      - name: "hero"
+        label: "Textes & image principale"
+        file: "content/hero.json"
+        fields:
+          - { label: "Accroche (petite ligne en haut)", name: "eyebrow", widget: "string", default: "Photographe d'entreprise — Paris & IDF" }
+          - { label: "Titre ligne 1", name: "title1", widget: "string", default: "L'image qui" }
+          - { label: "Titre ligne 2 (en rouge)", name: "title2", widget: "string", default: "raconte" }
+          - { label: "Titre ligne 3", name: "title3", widget: "string", default: "votre marque" }
+          - { label: "Sous-titre", name: "subtitle", widget: "text", default: "Photos corporate, portraits d'équipes, événements professionnels et visuels produits. Des images qui convertissent et qui durent." }
+          - { label: "Photo principale (hero)", name: "hero_image", widget: "image", required: false }
+          - { label: "Texte bouton principal", name: "cta_text", widget: "string", default: "Prendre rendez-vous" }
+
+  # ─── STATS ────────────────────────────────────────────────────
+  - name: "stats"
+    label: "📊 Chiffres clés"
+    files:
+      - name: "stats"
+        label: "Les 4 statistiques"
+        file: "content/stats.json"
+        fields:
+          - label: "Stat 1"
+            name: "stat1"
+            widget: "object"
+            fields:
+              - { label: "Nombre", name: "number", widget: "string", default: "120+" }
+              - { label: "Label", name: "label", widget: "string", default: "Clients entreprises" }
+          - label: "Stat 2"
+            name: "stat2"
+            widget: "object"
+            fields:
+              - { label: "Nombre", name: "number", widget: "string", default: "8" }
+              - { label: "Label", name: "label", widget: "string", default: "Années d'expérience" }
+          - label: "Stat 3"
+            name: "stat3"
+            widget: "object"
+            fields:
+              - { label: "Nombre", name: "number", widget: "string", default: "500+" }
+              - { label: "Label", name: "label", widget: "string", default: "Sessions réalisées" }
+          - label: "Stat 4"
+            name: "stat4"
+            widget: "object"
+            fields:
+              - { label: "Nombre", name: "number", widget: "string", default: "48h" }
+              - { label: "Label", name: "label", widget: "string", default: "Livraison des photos" }
+
+  # ─── SERVICES ─────────────────────────────────────────────────
+  - name: "services"
+    label: "🎯 Services"
+    files:
+      - name: "services"
+        label: "Les 3 services"
+        file: "content/services.json"
+        fields:
+          - label: "Service 1"
+            name: "service1"
+            widget: "object"
+            fields:
+              - { label: "Titre", name: "title", widget: "string", default: "Portraits Corporate" }
+              - { label: "Description", name: "description", widget: "text" }
+              - label: "Liste des points (4 max)"
+                name: "items"
+                widget: "list"
+                field: { label: "Point", name: "item", widget: "string" }
+          - label: "Service 2"
+            name: "service2"
+            widget: "object"
+            fields:
+              - { label: "Titre", name: "title", widget: "string", default: "Événements Pro" }
+              - { label: "Description", name: "description", widget: "text" }
+              - label: "Liste des points"
+                name: "items"
+                widget: "list"
+                field: { label: "Point", name: "item", widget: "string" }
+          - label: "Service 3"
+            name: "service3"
+            widget: "object"
+            fields:
+              - { label: "Titre", name: "title", widget: "string", default: "Photo Produit" }
+              - { label: "Description", name: "description", widget: "text" }
+              - label: "Liste des points"
+                name: "items"
+                widget: "list"
+                field: { label: "Point", name: "item", widget: "string" }
+
+  # ─── PORTFOLIO ────────────────────────────────────────────────
+  - name: "portfolio"
+    label: "📸 Portfolio (photos)"
+    label_singular: "Photo"
+    folder: "content/portfolio"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Catégorie", name: "category", widget: "select", options: ["Corporate", "Événements", "Produits", "Mariage"], default: "Corporate" }
+      - { label: "Titre / Légende", name: "title", widget: "string" }
+      - { label: "Sous-titre (client, lieu...)", name: "subtitle", widget: "string", required: false }
+      - { label: "Photo", name: "image", widget: "image" }
+      - { label: "Ordre d'affichage", name: "order", widget: "number", default: 1 }
+
+  # ─── TEMOIGNAGES ──────────────────────────────────────────────
+  - name: "testimonials"
+    label: "💬 Témoignages clients"
+    label_singular: "Témoignage"
+    folder: "content/testimonials"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Citation", name: "quote", widget: "text" }
+      - { label: "Prénom & Nom", name: "name", widget: "string" }
+      - { label: "Poste & Entreprise", name: "role", widget: "string" }
+      - { label: "Initiales (ex: SL)", name: "initials", widget: "string" }
+
+  # ─── A PROPOS ─────────────────────────────────────────────────
+  - name: "about"
+    label: "👤 À propos"
+    files:
+      - name: "about"
+        label: "Section À propos"
+        file: "content/about.json"
+        fields:
+          - { label: "Photo (portrait du photographe)", name: "photo", widget: "image", required: false }
+          - { label: "Paragraphe 1", name: "p1", widget: "text" }
+          - { label: "Paragraphe 2", name: "p2", widget: "text" }
+          - { label: "Paragraphe 3", name: "p3", widget: "text" }
