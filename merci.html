@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Message envoyé — 2T Film Factory</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Bebas+Neue&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: #0a0a0a;
+    color: #f5f5f5;
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+  }
+  .logo {
+    margin-bottom: 60px;
+  }
+  .check {
+    width: 80px;
+    height: 80px;
+    border: 1px solid #cc2222;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 40px;
+    animation: fadeIn 0.8s ease forwards;
+  }
+  .check svg { color: #cc2222; }
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 24px;
+  }
+  h1 em { font-style: italic; color: #cc2222; }
+  p {
+    color: #999;
+    font-size: 1rem;
+    line-height: 1.8;
+    max-width: 480px;
+    margin: 0 auto 48px;
+    font-weight: 300;
+  }
+  .btn {
+    background: #cc2222;
+    color: #f5f5f5;
+    padding: 16px 48px;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.3s ease, transform 0.3s ease;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn:hover { background: #e03333; transform: translateY(-2px); }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+  .page { animation: fadeIn 0.8s ease 0.2s both; }
+</style>
+</head>
+<body>
+  <div class="logo">
+    <svg width="180" height="36" viewBox="0 0 220 44" fill="none">
+      <path d="M16 22 A13 13 0 0 1 29 9" stroke="#444" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <path d="M16 22 A13 13 0 0 0 29 35" stroke="#444" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <text x="28" y="32" font-family="Arial Black,sans-serif" font-size="22" font-weight="900" fill="#f5f5f5" letter-spacing="-1">2T</text>
+      <text x="56" y="30" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#f5f5f5" letter-spacing="1">FILM FACT</text>
+      <text x="153" y="30" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#f5f5f5">O</text>
+      <circle cx="161" cy="24" r="3" fill="#cc2222"/>
+      <text x="169" y="30" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#f5f5f5" letter-spacing="1">RY</text>
+    </svg>
+  </div>
+
+  <div class="page">
+    <div class="check">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#cc2222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+    </div>
+    <h1>Message<br><em>bien reçu !</em></h1>
+    <p>Merci pour votre demande. Je vous répondrai dans les 24 heures avec une proposition personnalisée.</p>
+    <a href="/" class="btn">Retour au site</a>
+  </div>
+</body>
+</html>
