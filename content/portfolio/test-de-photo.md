@@ -1,6 +1,6 @@
 ---
-category: Corporate
-title: Test de photo
-image: /static/uploads/thiana.jpeg
+category: Événements
+title: Bureau
+image: /static/uploads/bureau2.jpg
 order: 1
 ---
