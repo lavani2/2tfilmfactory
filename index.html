@@ -1259,7 +1259,7 @@
         </div>
       </div>
     </div>
-    <div class="contact-form reveal">
+    <form class="contact-form reveal" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
       <div class="form-row">
         <div class="form-group">
           <label>Prénom & Nom</label>
@@ -1296,7 +1296,7 @@
         <label>Votre projet</label>
         <textarea placeholder="Décrivez votre besoin, le nombre de personnes, la date souhaitée..."></textarea>
       </div>
-      <button class="form-submit">Envoyer ma demande →</button>
+      <input type="hidden" name="form-name" value="contact"><p style="display:none"><input name="bot-field"></p><button type="submit" class="form-submit">Envoyer ma demande →</button>
     </div>
   </div>
 </section>
