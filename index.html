@@ -982,20 +982,20 @@
 <!-- Stats -->
 <div class="stats-bar reveal">
   <div class="stat-item">
-    <span class="stat-num">120+</span>
-    <span class="stat-label">Clients entreprises</span>
+    <span class="stat-num" id="stat1-num">120+</span>
+    <span class="stat-label" id="stat1-label">Clients entreprises</span>
   </div>
   <div class="stat-item">
-    <span class="stat-num">8</span>
-    <span class="stat-label">Années d'expérience</span>
+    <span class="stat-num" id="stat2-num">8</span>
+    <span class="stat-label" id="stat2-label">Années d'expérience</span>
   </div>
   <div class="stat-item">
-    <span class="stat-num">500+</span>
-    <span class="stat-label">Sessions réalisées</span>
+    <span class="stat-num" id="stat3-num">500+</span>
+    <span class="stat-label" id="stat3-label">Sessions réalisées</span>
   </div>
   <div class="stat-item">
-    <span class="stat-num">48h</span>
-    <span class="stat-label">Livraison des photos</span>
+    <span class="stat-num" id="stat4-num">48h</span>
+    <span class="stat-label" id="stat4-label">Livraison des photos</span>
   </div>
 </div>
 
@@ -1059,61 +1059,8 @@
       <button class="filter-tab">Produits</button>
     </div>
   </div>
-  <div class="portfolio-grid reveal">
-    <div class="portfolio-item">
-      <div class="photo-art ph-1" style="width:100%;height:100%;position:relative;">
-        <svg style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.06;" width="200" height="200" viewBox="0 0 200 200" fill="none">
-          <circle cx="100" cy="80" r="40" stroke="#c9a96e" stroke-width="1"/>
-          <path d="M60 160 C60 130 140 130 140 160" stroke="#c9a96e" stroke-width="1" fill="none"/>
-        </svg>
-        <div style="position:absolute;top:30%;right:20%;width:40%;height:35%;background:radial-gradient(ellipse, rgba(201,169,110,0.08) 0%, transparent 70%);"></div>
-      </div>
-      <div class="portfolio-overlay"></div>
-      <div class="portfolio-caption"><span>Portrait Corporate</span><p>Direction Générale — TechCorp Paris</p></div>
-    </div>
-    <div class="portfolio-item">
-      <div class="photo-art ph-2" style="width:100%;height:100%;position:relative;">
-        <svg style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.06;" width="120" height="80" viewBox="0 0 120 80" fill="none">
-          <rect x="10" y="25" width="100" height="30" rx="2" stroke="#c9a96e" stroke-width="1"/>
-          <circle cx="60" cy="40" r="12" stroke="#c9a96e" stroke-width="1"/>
-          <rect x="30" y="30" width="15" height="10" rx="1" stroke="#c9a96e" stroke-width="0.5"/>
-        </svg>
-      </div>
-      <div class="portfolio-overlay"></div>
-      <div class="portfolio-caption"><span>Photo Produit</span><p>Collection Horlogerie — Brand X</p></div>
-    </div>
-    <div class="portfolio-item">
-      <div class="photo-art ph-3" style="width:100%;height:100%;position:relative;">
-        <div style="position:absolute;inset:0;background:linear-gradient(135deg, rgba(201,169,110,0.04) 0%, transparent 60%);"></div>
-      </div>
-      <div class="portfolio-overlay"></div>
-      <div class="portfolio-caption"><span>Événement</span><p>Conférence annuelle — 350 participants</p></div>
-    </div>
-    <div class="portfolio-item">
-      <div class="photo-art ph-4" style="width:100%;height:100%;position:relative;">
-        <svg style="position:absolute;bottom:20%;left:20%;opacity:0.06;" width="80" height="60" viewBox="0 0 80 60" fill="none">
-          <rect x="5" y="5" width="70" height="50" rx="3" stroke="#c9a96e" stroke-width="1"/>
-          <circle cx="40" cy="30" r="15" stroke="#c9a96e" stroke-width="1"/>
-          <circle cx="40" cy="30" r="8" stroke="#c9a96e" stroke-width="0.5"/>
-        </svg>
-      </div>
-      <div class="portfolio-overlay"></div>
-      <div class="portfolio-caption"><span>Équipe</span><p>Photo d'équipe — Startup FinTech</p></div>
-    </div>
-    <div class="portfolio-item">
-      <div class="photo-art ph-5" style="width:100%;height:100%;position:relative;">
-        <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 70% 30%, rgba(201,169,110,0.06) 0%, transparent 60%);"></div>
-      </div>
-      <div class="portfolio-overlay"></div>
-      <div class="portfolio-caption"><span>Lifestyle Produit</span><p>Campagne lifestyle — Mode & Accessoires</p></div>
-    </div>
-    <div class="portfolio-item">
-      <div class="photo-art ph-6" style="width:100%;height:100%;position:relative;">
-        <div style="position:absolute;inset:0;background:linear-gradient(220deg, rgba(201,169,110,0.05) 0%, transparent 50%);"></div>
-      </div>
-      <div class="portfolio-overlay"></div>
-      <div class="portfolio-caption"><span>Séminaire</span><p>Team building — Cabinet de conseil</p></div>
-    </div>
+  <div class="portfolio-grid reveal" id="portfolio-grid">
+    <div style="grid-column:span 12;text-align:center;padding:80px;color:#666;">Chargement du portfolio...</div>
   </div>
 </section>
 
@@ -1154,7 +1101,7 @@
       <div class="section-tag">Témoignages</div>
       <h2>Ce que disent<br>mes <em>clients</em></h2>
     </div>
-    <div class="testimonials-grid">
+    <div class="testimonials-grid" id="testimonials-grid">
       <div class="testimonial-card reveal">
         <div class="quote-mark">"</div>
         <blockquote>Des photos qui ont complètement transformé notre présence en ligne. L'équipe est ravie de son portrait et nos clients remarquent immédiatement le professionnalisme qui s'en dégage.</blockquote>
@@ -1259,7 +1206,7 @@
         </div>
       </div>
     </div>
-    <form class="contact-form reveal" name="contact" method="POST" action="/merci.html" data-netlify="true" data-netlify-honeypot="bot-field">
+    <form class="contact-form reveal" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
       <div class="form-row">
         <div class="form-group">
           <label>Prénom & Nom</label>
@@ -1297,7 +1244,6 @@
         <textarea placeholder="Décrivez votre besoin, le nombre de personnes, la date souhaitée..."></textarea>
       </div>
       <input type="hidden" name="form-name" value="contact"><p style="display:none"><input name="bot-field"></p><button type="submit" class="form-submit">Envoyer ma demande →</button>
-    </form>
     </div>
   </div>
 </section>
@@ -1419,6 +1365,190 @@
       if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
+
+  // ─── PARSER FRONTMATTER ROBUSTE ───────────────────────────────
+  function parseFrontmatter(text) {
+    const match = text.match(/^---\s*\n([\s\S]*?)\n---/);
+    if (!match) return {};
+    const obj = {};
+    match[1].split('\n').forEach(line => {
+      const colonIdx = line.indexOf(':');
+      if (colonIdx === -1) return;
+      const key = line.slice(0, colonIdx).trim();
+      const val = line.slice(colonIdx + 1).trim().replace(/^["']|["']$/g, '');
+      if (key) obj[key] = val;
+    });
+    return obj;
+  }
+
+  // ─── LOAD JSON ────────────────────────────────────────────────
+  async function loadJSON(path) {
+    try {
+      const r = await fetch(path + '?v=' + Date.now());
+      return r.ok ? await r.json() : null;
+    } catch(e) { return null; }
+  }
+
+  // ─── PORTFOLIO ────────────────────────────────────────────────
+  let allPhotos = [];
+
+  function renderPortfolio(photos, filter = 'all') {
+    const grid = document.getElementById('portfolio-grid');
+    if (!grid) return;
+    const filtered = filter === 'all' ? photos : photos.filter(p => p.category === filter);
+    if (!filtered.length) {
+      grid.innerHTML = '<div style="grid-column:span 12;text-align:center;padding:80px;color:#666;">Aucune photo pour l\'instant — ajoutez vos photos depuis le back-office ✦</div>';
+      return;
+    }
+    grid.innerHTML = filtered.map((p, i) => `
+      <div class="portfolio-item" data-category="${p.category || ''}">
+        <img src="${p.image}" alt="${p.title || ''}" loading="lazy"
+             onerror="this.style.display='none'">
+        <div class="portfolio-overlay"></div>
+        <div class="portfolio-caption">
+          <span>${p.category || ''}</span>
+          <p>${p.title || ''}</p>
+        </div>
+      </div>`).join('');
+    // Réattache les events curseur
+    grid.querySelectorAll('.portfolio-item').forEach(el => {
+      el.addEventListener('mouseenter', () => { cursor.classList.add('expand'); ring.classList.add('expand'); });
+      el.addEventListener('mouseleave', () => { cursor.classList.remove('expand'); ring.classList.remove('expand'); });
+    });
+  }
+
+  // Filter tabs
+  document.querySelectorAll('.filter-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      renderPortfolio(allPhotos, tab.dataset.filter === 'all' ? 'all' : tab.dataset.filter);
+    });
+  });
+
+  // ─── TESTIMONIALS ─────────────────────────────────────────────
+  function renderTestimonials(list) {
+    const grid = document.getElementById('testimonials-grid');
+    if (!grid || !list.length) return;
+    grid.innerHTML = list.map(t => `
+      <div class="testimonial-card reveal">
+        <div class="quote-mark">"</div>
+        <blockquote>${t.quote || ''}</blockquote>
+        <div class="testimonial-author">
+          <div class="author-avatar">${t.initials || '?'}</div>
+          <div class="author-info">
+            <strong>${t.name || ''}</strong>
+            <span>${t.role || ''}</span>
+          </div>
+        </div>
+      </div>`).join('');
+    grid.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  }
+
+  // ─── CHARGEMENT PRINCIPAL ─────────────────────────────────────
+  async function loadCMSContent() {
+
+    // Infos générales
+    const general = await loadJSON('/content/general.json');
+    if (general) {
+      if (general.email) {
+        document.querySelectorAll('[data-email]').forEach(el => {
+          el.textContent = general.email;
+          el.href = 'mailto:' + general.email;
+        });
+      }
+      if (general.phone) {
+        const el = document.getElementById('contact-phone');
+        if (el) el.textContent = general.phone;
+      }
+      if (general.zone) {
+        const el = document.getElementById('contact-zone');
+        if (el) el.textContent = general.zone;
+      }
+      if (general.youtube) {
+        const el = document.getElementById('footer-youtube');
+        if (el) el.href = general.youtube;
+      }
+      if (general.instagram) {
+        const el = document.getElementById('footer-instagram');
+        if (el) el.href = general.instagram;
+      }
+    }
+
+    // Stats
+    const stats = await loadJSON('/content/stats.json');
+    if (stats) {
+      ['stat1','stat2','stat3','stat4'].forEach(k => {
+        if (!stats[k]) return;
+        const numEl = document.getElementById(k + '-num');
+        const lblEl = document.getElementById(k + '-label');
+        if (numEl) numEl.textContent = stats[k].number || '';
+        if (lblEl) lblEl.textContent = stats[k].label || '';
+      });
+    }
+
+    // About
+    const about = await loadJSON('/content/about.json');
+    if (about) {
+      ['p1','p2','p3'].forEach(p => {
+        const el = document.getElementById('about-' + p);
+        if (el && about[p]) el.textContent = about[p];
+      });
+    }
+
+    // ── Portfolio via API GitHub ──────────────────────────────
+    try {
+      const resp = await fetch('https://api.github.com/repos/lavani2/2tfilmfactory/contents/content/portfolio', {
+        headers: { 'Accept': 'application/vnd.github.v3+json' }
+      });
+
+      if (resp.ok) {
+        const files = await resp.json();
+        const mdFiles = files.filter(f => f.name.endsWith('.md'));
+
+        const photos = await Promise.all(mdFiles.map(async f => {
+          const r = await fetch(f.download_url + '?v=' + Date.now());
+          const text = await r.text();
+          const data = parseFrontmatter(text);
+          console.log('Photo chargée:', data); // debug
+          return data;
+        }));
+
+        allPhotos = photos
+          .filter(p => p.image && p.image.trim() !== '')
+          .sort((a, b) => (parseInt(a.order) || 99) - (parseInt(b.order) || 99));
+
+        console.log('Total photos:', allPhotos.length); // debug
+        renderPortfolio(allPhotos);
+      } else {
+        console.error('GitHub API error:', resp.status);
+      }
+    } catch(e) {
+      console.error('Erreur chargement portfolio:', e);
+    }
+
+    // ── Témoignages via API GitHub ────────────────────────────
+    try {
+      const resp = await fetch('https://api.github.com/repos/lavani2/2tfilmfactory/contents/content/testimonials', {
+        headers: { 'Accept': 'application/vnd.github.v3+json' }
+      });
+      if (resp.ok) {
+        const files = await resp.json();
+        const mdFiles = files.filter(f => f.name.endsWith('.md'));
+        const testimonials = await Promise.all(mdFiles.map(async f => {
+          const r = await fetch(f.download_url);
+          const text = await r.text();
+          return parseFrontmatter(text);
+        }));
+        renderTestimonials(testimonials.filter(t => t.name));
+      }
+    } catch(e) {
+      console.error('Erreur chargement témoignages:', e);
+    }
+  }
+
+  // Lance le chargement
+  loadCMSContent();
 </script>
 </body>
 </html>
