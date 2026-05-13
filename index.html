@@ -959,20 +959,13 @@
     </div>
   </div>
   <div class="hero-right">
-    <div class="hero-img-container">
-      <div class="photo-art ph-1" style="width:100%;height:100%;position:relative;">
-        <svg style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.07;" width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="200" cy="200" r="150" stroke="#c9a96e" stroke-width="1"/>
-          <circle cx="200" cy="200" r="100" stroke="#c9a96e" stroke-width="0.5"/>
-          <circle cx="200" cy="200" r="50" stroke="#c9a96e" stroke-width="0.5"/>
-          <line x1="50" y1="200" x2="350" y2="200" stroke="#c9a96e" stroke-width="0.5"/>
-          <line x1="200" y1="50" x2="200" y2="350" stroke="#c9a96e" stroke-width="0.5"/>
-          <rect x="120" y="160" width="160" height="80" rx="4" stroke="#c9a96e" stroke-width="1"/>
-          <circle cx="200" cy="200" r="20" stroke="#c9a96e" stroke-width="1"/>
+    <div class="hero-img-container" id="hero-img-container">
+      <div id="hero-placeholder" style="width:100%;height:100%;background:linear-gradient(135deg,#1a1a1a 0%,#2c2c2c 50%,#1a1a1a 100%);display:flex;align-items:center;justify-content:center;">
+        <svg opacity="0.06" width="200" height="200" viewBox="0 0 200 200" fill="none">
+          <circle cx="100" cy="100" r="80" stroke="#cc2222" stroke-width="1"/>
+          <rect x="60" y="80" width="80" height="40" rx="4" stroke="#cc2222" stroke-width="1"/>
+          <circle cx="100" cy="100" r="15" stroke="#cc2222" stroke-width="1"/>
         </svg>
-        <!-- Golden light leak effect -->
-        <div style="position:absolute;top:0;right:0;width:60%;height:40%;background:radial-gradient(ellipse at top right, rgba(201,169,110,0.08) 0%, transparent 70%);"></div>
-        <div style="position:absolute;bottom:20%;left:20%;width:30%;height:30%;background:radial-gradient(ellipse, rgba(201,169,110,0.05) 0%, transparent 70%);"></div>
       </div>
     </div>
     <div class="hero-img-overlay"></div>
@@ -1053,10 +1046,10 @@
       <h2>Quelques <em>réalisations</em></h2>
     </div>
     <div class="filter-tabs">
-      <button class="filter-tab active">Tout</button>
-      <button class="filter-tab">Corporate</button>
-      <button class="filter-tab">Événements</button>
-      <button class="filter-tab">Produits</button>
+      <button class="filter-tab active" data-filter="all">Tout</button>
+      <button class="filter-tab" data-filter="Corporate">Corporate</button>
+      <button class="filter-tab" data-filter="Événements">Événements</button>
+      <button class="filter-tab" data-filter="Produits">Produits</button>
     </div>
   </div>
   <div class="portfolio-grid reveal" id="portfolio-grid">
@@ -1157,9 +1150,9 @@
   <div class="about-text">
     <div class="section-tag reveal">À propos</div>
     <h2 class="reveal">La vision derrière<br><em>2T Film Factory</em></h2>
-    <p class="reveal">Photographe et vidéaste basé à Paris, je travaille avec des entreprises de toutes tailles pour créer des visuels qui racontent leur histoire et renforcent leur identité de marque.</p>
-    <p class="reveal">Mon approche est cinématographique : chaque image est pensée comme un cadre de film, avec une attention particulière à la lumière, la composition et l'émotion transmise. Le résultat ? Des photos qui se démarquent vraiment.</p>
-    <p class="reveal">De la startup en pleine croissance au grand groupe, je m'adapte à chaque contexte pour livrer des images à la hauteur de vos ambitions.</p>
+    <p class="reveal" id="about-p1">Photographe et vidéaste basé à Paris, je travaille avec des entreprises de toutes tailles pour créer des visuels qui racontent leur histoire et renforcent leur identité de marque.</p>
+    <p class="reveal" id="about-p2">Mon approche est cinématographique : chaque image est pensée comme un cadre de film, avec une attention particulière à la lumière, la composition et l'émotion transmise. Le résultat ? Des photos qui se démarquent vraiment.</p>
+    <p class="reveal" id="about-p3">De la startup en pleine croissance au grand groupe, je m'adapte à chaque contexte pour livrer des images à la hauteur de vos ambitions.</p>
     <div class="about-signature reveal">2T Film Factory</div>
   </div>
 </div>
@@ -1187,14 +1180,14 @@
           <div class="contact-item-icon">✉</div>
           <div class="contact-item-text">
             <strong>Email</strong>
-            <span>contact@2tfilmfactory.com</span>
+            <span id="contact-email">contact@2tfilmfactory.com</span>
           </div>
         </div>
         <div class="contact-item">
           <div class="contact-item-icon">📍</div>
           <div class="contact-item-text">
             <strong>Zone d'intervention</strong>
-            <span>Paris & Île-de-France — déplacements toute France</span>
+            <span id="contact-zone">Paris & Île-de-France — déplacements toute France</span>
           </div>
         </div>
         <div class="contact-item">
@@ -1206,30 +1199,32 @@
         </div>
       </div>
     </div>
-    <form class="contact-form reveal" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+    <form class="contact-form reveal" name="contact" method="POST" action="/merci" data-netlify="true" data-netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="contact">
+      <p style="display:none"><input name="bot-field"></p>
       <div class="form-row">
         <div class="form-group">
-          <label>Prénom & Nom</label>
-          <input type="text" placeholder="Jean Dupont">
+          <label for="f-nom">Prénom & Nom</label>
+          <input id="f-nom" type="text" name="nom" placeholder="Jean Dupont" required>
         </div>
         <div class="form-group">
-          <label>Entreprise</label>
-          <input type="text" placeholder="Nom de votre société">
+          <label for="f-entreprise">Entreprise</label>
+          <input id="f-entreprise" type="text" name="entreprise" placeholder="Nom de votre société">
         </div>
       </div>
       <div class="form-row">
         <div class="form-group">
-          <label>Email</label>
-          <input type="email" placeholder="jean@entreprise.com">
+          <label for="f-email">Email</label>
+          <input id="f-email" type="email" name="email" placeholder="jean@entreprise.com" required>
         </div>
         <div class="form-group">
-          <label>Téléphone</label>
-          <input type="tel" placeholder="+33 6 00 00 00 00">
+          <label for="f-tel">Téléphone</label>
+          <input id="f-tel" type="tel" name="telephone" placeholder="+33 6 00 00 00 00">
         </div>
       </div>
       <div class="form-group">
-        <label>Type de prestation</label>
-        <select>
+        <label for="f-prestation">Type de prestation</label>
+        <select id="f-prestation" name="prestation">
           <option value="">Sélectionnez une prestation</option>
           <option>Portraits Corporate</option>
           <option>Photo d'Équipe</option>
@@ -1240,11 +1235,11 @@
         </select>
       </div>
       <div class="form-group">
-        <label>Votre projet</label>
-        <textarea placeholder="Décrivez votre besoin, le nombre de personnes, la date souhaitée..."></textarea>
+        <label for="f-message">Votre projet</label>
+        <textarea id="f-message" name="message" placeholder="Décrivez votre besoin, le nombre de personnes, la date souhaitée..."></textarea>
       </div>
-      <input type="hidden" name="form-name" value="contact"><p style="display:none"><input name="bot-field"></p><button type="submit" class="form-submit">Envoyer ma demande →</button>
-    </div>
+      <button type="submit" class="form-submit">Envoyer ma demande →</button>
+    </form>
   </div>
 </section>
 
@@ -1288,9 +1283,9 @@
   <div class="footer-bottom">
     <p>© 2025 2T Film Factory — Tous droits réservés</p>
     <div class="social-links">
-      <a href="#">Instagram</a>
+      <a href="#" id="footer-instagram">Instagram</a>
       <a href="#">LinkedIn</a>
-      <a href="#">YouTube</a>
+      <a href="#" id="footer-youtube">YouTube</a>
     </div>
   </div>
 </footer>
@@ -1366,7 +1361,7 @@
     });
   });
 
-  // ─── PARSER FRONTMATTER ROBUSTE ───────────────────────────────
+  // ─── PARSER FRONTMATTER ───────────────────────────────────────
   function parseFrontmatter(text) {
     const match = text.match(/^---\s*\n([\s\S]*?)\n---/);
     if (!match) return {};
@@ -1384,33 +1379,33 @@
   // ─── LOAD JSON ────────────────────────────────────────────────
   async function loadJSON(path) {
     try {
-      const r = await fetch(path + '?v=' + Date.now());
+      const r = await fetch(path + '?t=' + Date.now());
       return r.ok ? await r.json() : null;
     } catch(e) { return null; }
   }
 
-  // ─── PORTFOLIO ────────────────────────────────────────────────
+  // ─── RENDER PORTFOLIO ─────────────────────────────────────────
   let allPhotos = [];
 
-  function renderPortfolio(photos, filter = 'all') {
+  function renderPortfolio(photos, filter) {
     const grid = document.getElementById('portfolio-grid');
     if (!grid) return;
-    const filtered = filter === 'all' ? photos : photos.filter(p => p.category === filter);
+    const filtered = (!filter || filter === 'all')
+      ? photos
+      : photos.filter(p => (p.category || '').trim() === filter.trim());
     if (!filtered.length) {
-      grid.innerHTML = '<div style="grid-column:span 12;text-align:center;padding:80px;color:#666;">Aucune photo pour l\'instant — ajoutez vos photos depuis le back-office ✦</div>';
+      grid.innerHTML = '<div style="grid-column:span 12;text-align:center;padding:80px;color:#666;font-size:0.9rem;">Aucune photo dans cette catégorie pour l\'instant.</div>';
       return;
     }
-    grid.innerHTML = filtered.map((p, i) => `
+    grid.innerHTML = filtered.map(p => `
       <div class="portfolio-item" data-category="${p.category || ''}">
-        <img src="${p.image}" alt="${p.title || ''}" loading="lazy"
-             onerror="this.style.display='none'">
+        <img src="${p.image}" alt="${p.title || ''}" loading="lazy" onerror="this.parentElement.style.background='#1a1a1a';this.style.display='none'">
         <div class="portfolio-overlay"></div>
         <div class="portfolio-caption">
           <span>${p.category || ''}</span>
           <p>${p.title || ''}</p>
         </div>
       </div>`).join('');
-    // Réattache les events curseur
     grid.querySelectorAll('.portfolio-item').forEach(el => {
       el.addEventListener('mouseenter', () => { cursor.classList.add('expand'); ring.classList.add('expand'); });
       el.addEventListener('mouseleave', () => { cursor.classList.remove('expand'); ring.classList.remove('expand'); });
@@ -1422,11 +1417,11 @@
     tab.addEventListener('click', () => {
       document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
-      renderPortfolio(allPhotos, tab.dataset.filter === 'all' ? 'all' : tab.dataset.filter);
+      renderPortfolio(allPhotos, tab.dataset.filter);
     });
   });
 
-  // ─── TESTIMONIALS ─────────────────────────────────────────────
+  // ─── RENDER TESTIMONIALS ──────────────────────────────────────
   function renderTestimonials(list) {
     const grid = document.getElementById('testimonials-grid');
     if (!grid || !list.length) return;
@@ -1445,109 +1440,121 @@
     grid.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   }
 
-  // ─── CHARGEMENT PRINCIPAL ─────────────────────────────────────
+  // ─── CHARGEMENT CMS ───────────────────────────────────────────
   async function loadCMSContent() {
 
-    // Infos générales
+    // 1. Infos générales
     const general = await loadJSON('/content/general.json');
     if (general) {
-      if (general.email) {
-        document.querySelectorAll('[data-email]').forEach(el => {
+      const emailEls = [
+        document.getElementById('contact-email'),
+        document.getElementById('footer-email'),
+        document.getElementById('cta-email')
+      ];
+      emailEls.forEach(el => {
+        if (el && general.email) {
           el.textContent = general.email;
-          el.href = 'mailto:' + general.email;
-        });
-      }
-      if (general.phone) {
-        const el = document.getElementById('contact-phone');
-        if (el) el.textContent = general.phone;
-      }
-      if (general.zone) {
-        const el = document.getElementById('contact-zone');
-        if (el) el.textContent = general.zone;
-      }
-      if (general.youtube) {
-        const el = document.getElementById('footer-youtube');
-        if (el) el.href = general.youtube;
-      }
-      if (general.instagram) {
-        const el = document.getElementById('footer-instagram');
-        if (el) el.href = general.instagram;
-      }
+          if (el.tagName === 'A') el.href = 'mailto:' + general.email;
+        }
+      });
+      const zone = document.getElementById('contact-zone');
+      if (zone && general.zone) zone.textContent = general.zone;
+      const yt = document.getElementById('footer-youtube');
+      if (yt && general.youtube) yt.href = general.youtube;
+      const ig = document.getElementById('footer-instagram');
+      if (ig && general.instagram) ig.href = general.instagram;
     }
 
-    // Stats
+    // 2. Stats
     const stats = await loadJSON('/content/stats.json');
     if (stats) {
       ['stat1','stat2','stat3','stat4'].forEach(k => {
         if (!stats[k]) return;
-        const numEl = document.getElementById(k + '-num');
-        const lblEl = document.getElementById(k + '-label');
-        if (numEl) numEl.textContent = stats[k].number || '';
-        if (lblEl) lblEl.textContent = stats[k].label || '';
+        const n = document.getElementById(k + '-num');
+        const l = document.getElementById(k + '-label');
+        if (n) n.textContent = stats[k].number || '';
+        if (l) l.textContent = stats[k].label || '';
       });
     }
 
-    // About
+    // 3. Hero image
+    const hero = await loadJSON('/content/hero.json');
+    if (hero && hero.hero_image && hero.hero_image.trim() !== '') {
+      const container = document.getElementById('hero-img-container');
+      const placeholder = document.getElementById('hero-placeholder');
+      if (container) {
+        if (placeholder) placeholder.remove();
+        const img = document.createElement('img');
+        img.src = hero.hero_image;
+        img.alt = '2T Film Factory';
+        img.style.cssText = 'width:100%;height:100%;object-fit:cover;object-position:center top;filter:contrast(1.05) brightness(0.9);position:absolute;inset:0;';
+        container.appendChild(img);
+      }
+    }
+
+    // 4. About
     const about = await loadJSON('/content/about.json');
     if (about) {
       ['p1','p2','p3'].forEach(p => {
         const el = document.getElementById('about-' + p);
         if (el && about[p]) el.textContent = about[p];
       });
-    }
-
-    // ── Portfolio via API GitHub ──────────────────────────────
-    try {
-      const resp = await fetch('https://api.github.com/repos/lavani2/2tfilmfactory/contents/content/portfolio', {
-        headers: { 'Accept': 'application/vnd.github.v3+json' }
-      });
-
-      if (resp.ok) {
-        const files = await resp.json();
-        const mdFiles = files.filter(f => f.name.endsWith('.md'));
-
-        const photos = await Promise.all(mdFiles.map(async f => {
-          const r = await fetch(f.download_url + '?v=' + Date.now());
-          const text = await r.text();
-          const data = parseFrontmatter(text);
-          console.log('Photo chargée:', data); // debug
-          return data;
-        }));
-
-        allPhotos = photos
-          .filter(p => p.image && p.image.trim() !== '')
-          .sort((a, b) => (parseInt(a.order) || 99) - (parseInt(b.order) || 99));
-
-        console.log('Total photos:', allPhotos.length); // debug
-        renderPortfolio(allPhotos);
-      } else {
-        console.error('GitHub API error:', resp.status);
+      if (about.photo && about.photo.trim() !== '') {
+        const wrapper = document.querySelector('.about-img');
+        if (wrapper) {
+          wrapper.innerHTML = `<img src="${about.photo}" alt="2T Film Factory" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.75) contrast(1.1);">`;
+        }
       }
-    } catch(e) {
-      console.error('Erreur chargement portfolio:', e);
     }
 
-    // ── Témoignages via API GitHub ────────────────────────────
+    // 5. Portfolio via API GitHub
     try {
-      const resp = await fetch('https://api.github.com/repos/lavani2/2tfilmfactory/contents/content/testimonials', {
-        headers: { 'Accept': 'application/vnd.github.v3+json' }
-      });
+      const resp = await fetch(
+        'https://api.github.com/repos/lavani2/2tfilmfactory/contents/content/portfolio',
+        { headers: { 'Accept': 'application/vnd.github.v3+json' } }
+      );
       if (resp.ok) {
         const files = await resp.json();
-        const mdFiles = files.filter(f => f.name.endsWith('.md'));
-        const testimonials = await Promise.all(mdFiles.map(async f => {
-          const r = await fetch(f.download_url);
+        const mdFiles = Array.isArray(files) ? files.filter(f => f.name.endsWith('.md')) : [];
+        const photos = await Promise.all(mdFiles.map(async f => {
+          const r = await fetch(f.download_url + '?t=' + Date.now());
           const text = await r.text();
           return parseFrontmatter(text);
         }));
-        renderTestimonials(testimonials.filter(t => t.name));
+        allPhotos = photos
+          .filter(p => p.image && p.image.trim() !== '')
+          .sort((a, b) => (parseInt(a.order) || 99) - (parseInt(b.order) || 99));
+        renderPortfolio(allPhotos, 'all');
+      } else {
+        document.getElementById('portfolio-grid').innerHTML =
+          '<div style="grid-column:span 12;text-align:center;padding:80px;color:#666;">Ajoutez vos photos depuis le back-office ✦</div>';
       }
     } catch(e) {
-      console.error('Erreur chargement témoignages:', e);
+      console.error('Portfolio:', e);
+    }
+
+    // 6. Témoignages via API GitHub
+    try {
+      const resp = await fetch(
+        'https://api.github.com/repos/lavani2/2tfilmfactory/contents/content/testimonials',
+        { headers: { 'Accept': 'application/vnd.github.v3+json' } }
+      );
+      if (resp.ok) {
+        const files = await resp.json();
+        const mdFiles = Array.isArray(files) ? files.filter(f => f.name.endsWith('.md')) : [];
+        const testimonials = await Promise.all(mdFiles.map(async f => {
+          const r = await fetch(f.download_url + '?t=' + Date.now());
+          const text = await r.text();
+          return parseFrontmatter(text);
+        }));
+        const valid = testimonials.filter(t => t.name && t.quote);
+        if (valid.length) renderTestimonials(valid);
+      }
+    } catch(e) {
+      console.error('Témoignages:', e);
     }
   }
 
-  // Lance le chargement
   loadCMSContent();
 </script>
 </body>
