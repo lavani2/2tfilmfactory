@@ -1,7 +1,8 @@
 ---
-category: Événements
-title: Politique
+category: Produits
+title: Pongal Saree
 subtitle: Joseph Vijay
-image: /static/uploads/employe1.jpg
+name: Saree
+image: /static/uploads/pongal2.jpg
 order: 3
 ---
