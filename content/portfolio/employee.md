@@ -1,6 +1,7 @@
 ---
-category: Corporate
-title: Employee
-image: /static/uploads/employe2.jpg
-order: 1
+name: Mariage
+category: Événements
+title: La mariée
+image: /static/uploads/marie.jpg
+order: 2
 ---
