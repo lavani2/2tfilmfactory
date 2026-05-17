@@ -1,7 +1,7 @@
 ---
-name: Mariage
+name: Photoshoot
 category: Événements
-title: La mariée
-image: /static/uploads/marie.jpg
+title: Employée
+image: /static/uploads/employe2.jpg
 order: 2
 ---
