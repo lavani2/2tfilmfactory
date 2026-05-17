@@ -466,13 +466,63 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: grayscale(30%) contrast(1.05);
+    object-position: center center;
+    filter: grayscale(20%) contrast(1.05);
     transition: transform 0.7s cubic-bezier(0.4,0,0.2,1), filter 0.5s ease;
   }
   .portfolio-item:hover img {
     transform: scale(1.06);
     filter: grayscale(0%) contrast(1.05);
   }
+
+  /* ─── LIGHTBOX ────────────────────────────────────────────── */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9990;
+    background: rgba(0,0,0,0.92);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    cursor: zoom-out;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    box-shadow: 0 0 80px rgba(0,0,0,0.8);
+    cursor: default;
+    animation: lbIn 0.3s ease;
+  }
+  .lightbox-close {
+    position: fixed;
+    top: 24px;
+    right: 32px;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    z-index: 9991;
+    background: none;
+    border: none;
+    font-family: sans-serif;
+  }
+  .lightbox-close:hover { opacity: 1; }
+  .lightbox-caption {
+    position: fixed;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.7);
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  @keyframes lbIn { from{opacity:0;transform:scale(0.95)} to{opacity:1;transform:scale(1)} }
   .portfolio-overlay {
     position: absolute;
     inset: 0;
@@ -1026,7 +1076,7 @@
 
 <!-- Navigation -->
 <nav id="navbar">
-  <a href="#" class="logo">
+  <a href="#home" class="logo">
     2T Film Factory
     <span>Photographe Corporate · Paris</span>
   </a>
@@ -1053,21 +1103,8 @@
     </div>
   </div>
   <div class="hero-right">
-    <div class="hero-img-container">
-      <div class="photo-art ph-1" style="width:100%;height:100%;position:relative;">
-        <svg style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.07;" width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="200" cy="200" r="150" stroke="#c9a96e" stroke-width="1"/>
-          <circle cx="200" cy="200" r="100" stroke="#c9a96e" stroke-width="0.5"/>
-          <circle cx="200" cy="200" r="50" stroke="#c9a96e" stroke-width="0.5"/>
-          <line x1="50" y1="200" x2="350" y2="200" stroke="#c9a96e" stroke-width="0.5"/>
-          <line x1="200" y1="50" x2="200" y2="350" stroke="#c9a96e" stroke-width="0.5"/>
-          <rect x="120" y="160" width="160" height="80" rx="4" stroke="#c9a96e" stroke-width="1"/>
-          <circle cx="200" cy="200" r="20" stroke="#c9a96e" stroke-width="1"/>
-        </svg>
-        <!-- Golden light leak effect -->
-        <div style="position:absolute;top:0;right:0;width:60%;height:40%;background:radial-gradient(ellipse at top right, rgba(201,169,110,0.08) 0%, transparent 70%);"></div>
-        <div style="position:absolute;bottom:20%;left:20%;width:30%;height:30%;background:radial-gradient(ellipse, rgba(201,169,110,0.05) 0%, transparent 70%);"></div>
-      </div>
+    <div class="hero-img-container" id="hero-img-container" style="position:absolute;inset:0;">
+      <div id="hero-placeholder" style="width:100%;height:100%;background:linear-gradient(135deg,#1a1a1a 0%,#2c2c2c 50%,#1a1a1a 100%);"></div>
     </div>
     <div class="hero-img-overlay"></div>
   </div>
@@ -1235,8 +1272,8 @@
 
 <!-- About -->
 <div class="about" id="about">
-  <div class="about-img">
-    <div class="about-img-inner">
+  <div class="about-img" id="about-img-wrapper">
+    <div class="about-img-inner" id="about-img-inner">
       <svg class="camera-silhouette" width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect x="50" y="80" width="300" height="180" rx="16" fill="none" stroke="#c9a96e" stroke-width="2"/>
         <circle cx="200" cy="180" r="65" fill="none" stroke="#c9a96e" stroke-width="2"/>
@@ -1251,9 +1288,9 @@
   <div class="about-text">
     <div class="section-tag reveal">À propos</div>
     <h2 class="reveal">La vision derrière<br><em>2T Film Factory</em></h2>
-    <p class="reveal">Photographe et vidéaste basé à Paris, je travaille avec des entreprises de toutes tailles pour créer des visuels qui racontent leur histoire et renforcent leur identité de marque.</p>
-    <p class="reveal">Mon approche est cinématographique : chaque image est pensée comme un cadre de film, avec une attention particulière à la lumière, la composition et l'émotion transmise. Le résultat ? Des photos qui se démarquent vraiment.</p>
-    <p class="reveal">De la startup en pleine croissance au grand groupe, je m'adapte à chaque contexte pour livrer des images à la hauteur de vos ambitions.</p>
+    <p class="reveal" id="about-p1">Photographe et vidéaste basé à Paris, je travaille avec des entreprises de toutes tailles pour créer des visuels qui racontent leur histoire et renforcent leur identité de marque.</p>
+    <p class="reveal" id="about-p2">Mon approche est cinématographique : chaque image est pensée comme un cadre de film, avec une attention particulière à la lumière, la composition et l'émotion transmise. Le résultat ? Des photos qui se démarquent vraiment.</p>
+    <p class="reveal" id="about-p3">De la startup en pleine croissance au grand groupe, je m'adapte à chaque contexte pour livrer des images à la hauteur de vos ambitions.</p>
     <div class="about-signature reveal">2T Film Factory</div>
   </div>
 </div>
@@ -1281,49 +1318,51 @@
           <div class="contact-item-icon">✉</div>
           <div class="contact-item-text">
             <strong>Email</strong>
-            <span>contact@2tfilmfactory.com</span>
+            <a id="contact-email" href="mailto:contact@2tfilmfactory.com" style="color:var(--grey-light);text-decoration:none;">contact@2tfilmfactory.com</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">📞</div>
+          <div class="contact-item-text">
+            <strong>Téléphone</strong>
+            <span id="contact-phone">+33 6 00 00 00 00</span>
           </div>
         </div>
         <div class="contact-item">
           <div class="contact-item-icon">📍</div>
           <div class="contact-item-text">
             <strong>Zone d'intervention</strong>
-            <span>Paris & Île-de-France — déplacements toute France</span>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-item-icon">⏱</div>
-          <div class="contact-item-text">
-            <strong>Réponse garantie</strong>
-            <span>Sous 24 heures ouvrées</span>
+            <span id="contact-zone">Paris & Île-de-France — déplacements toute France</span>
           </div>
         </div>
       </div>
     </div>
-    <form class="contact-form reveal" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+    <form class="contact-form reveal" name="contact" method="POST" action="/merci" data-netlify="true" data-netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="contact">
+      <p style="display:none"><input name="bot-field"></p>
       <div class="form-row">
         <div class="form-group">
           <label>Prénom & Nom</label>
-          <input type="text" placeholder="Jean Dupont">
+          <input type="text" name="nom" placeholder="Jean Dupont" required>
         </div>
         <div class="form-group">
           <label>Entreprise</label>
-          <input type="text" placeholder="Nom de votre société">
+          <input type="text" name="entreprise" placeholder="Nom de votre société">
         </div>
       </div>
       <div class="form-row">
         <div class="form-group">
           <label>Email</label>
-          <input type="email" placeholder="jean@entreprise.com">
+          <input type="email" name="email" placeholder="jean@entreprise.com" required>
         </div>
         <div class="form-group">
           <label>Téléphone</label>
-          <input type="tel" placeholder="+33 6 00 00 00 00">
+          <input type="tel" name="telephone" placeholder="+33 6 00 00 00 00">
         </div>
       </div>
       <div class="form-group">
         <label>Type de prestation</label>
-        <select>
+        <select name="prestation">
           <option value="">Sélectionnez une prestation</option>
           <option>Portraits Corporate</option>
           <option>Photo d'Équipe</option>
@@ -1335,10 +1374,10 @@
       </div>
       <div class="form-group">
         <label>Votre projet</label>
-        <textarea placeholder="Décrivez votre besoin, le nombre de personnes, la date souhaitée..."></textarea>
+        <textarea name="message" placeholder="Décrivez votre besoin, le nombre de personnes, la date souhaitée..."></textarea>
       </div>
-      <input type="hidden" name="form-name" value="contact"><p style="display:none"><input name="bot-field"></p><button type="submit" class="form-submit">Envoyer ma demande →</button>
-    </div>
+      <button type="submit" class="form-submit">Envoyer ma demande →</button>
+    </form>
   </div>
 </section>
 
@@ -1346,7 +1385,7 @@
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
-      <a href="#" class="logo">
+      <a href="#home" class="logo">
         2T Film Factory
         <span>Photographe Corporate · Paris</span>
       </a>
@@ -1373,26 +1412,290 @@
     <div class="footer-col">
       <h4>Contact</h4>
       <ul>
-        <li><a href="mailto:contact@2tfilmfactory.com">contact@2tfilmfactory.com</a></li>
-        <li><a href="#">Paris & Île-de-France</a></li>
-        <li><a href="#">Devis gratuit</a></li>
+        <li><a href="mailto:contact@2tfilmfactory.com" id="footer-email">contact@2tfilmfactory.com</a></li>
+        <li><a href="#contact">Demander un devis</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
     <p>© 2025 2T Film Factory — Tous droits réservés</p>
     <div class="social-links">
-      <a href="#">Instagram</a>
-      <a href="#">LinkedIn</a>
-      <a href="#">YouTube</a>
+      <a href="https://www.instagram.com/2tfilmfactory/" id="footer-instagram" target="_blank">Instagram</a>
+      <a href="#" id="footer-linkedin" target="_blank">LinkedIn</a>
+      <a href="https://www.youtube.com/@2TFilmFactory" id="footer-youtube" target="_blank">YouTube</a>
     </div>
   </div>
 </footer>
 
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightbox-close">✕</button>
+  <img id="lightbox-img" src="" alt="">
+  <div class="lightbox-caption" id="lightbox-caption"></div>
+</div>
+
 <script>
-  // Custom cursor
+  // ─── CURSOR ───────────────────────────────────────────────────
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
+  let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX; mouseY = e.clientY;
+    cursor.style.left = mouseX + 'px'; cursor.style.top = mouseY + 'px';
+  });
+  (function animateRing() {
+    ringX += (mouseX - ringX) * 0.12; ringY += (mouseY - ringY) * 0.12;
+    ring.style.left = ringX + 'px'; ring.style.top = ringY + 'px';
+    requestAnimationFrame(animateRing);
+  })();
+  document.querySelectorAll('a, button, .service-card').forEach(el => {
+    el.addEventListener('mouseenter', () => { cursor.classList.add('expand'); ring.classList.add('expand'); });
+    el.addEventListener('mouseleave', () => { cursor.classList.remove('expand'); ring.classList.remove('expand'); });
+  });
+
+  // ─── NAVBAR ───────────────────────────────────────────────────
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60));
+
+  // ─── SCROLL REVEAL ────────────────────────────────────────────
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), 100); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ─── SMOOTH SCROLL ────────────────────────────────────────────
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if (href === '#') return;
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      else window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  // ─── LIGHTBOX ─────────────────────────────────────────────────
+  const lightbox     = document.getElementById('lightbox');
+  const lightboxImg  = document.getElementById('lightbox-img');
+  const lightboxCap  = document.getElementById('lightbox-caption');
+  const lightboxClose= document.getElementById('lightbox-close');
+
+  function openLightbox(src, caption) {
+    lightboxImg.src = src;
+    lightboxCap.textContent = caption || '';
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+    lightboxImg.src = '';
+  }
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+  // ─── PARSER FRONTMATTER (gère >- multilignes) ─────────────────
+  function parseFrontmatter(text) {
+    const match = text.match(/^---\s*\n([\s\S]*?)\n---/);
+    if (!match) return {};
+    const obj = {};
+    const lines = match[1].split('\n');
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      const colonIdx = line.indexOf(':');
+      if (colonIdx === -1) { i++; continue; }
+      const key = line.slice(0, colonIdx).trim();
+      const rest = line.slice(colonIdx + 1).trim();
+      if (rest === '>-' || rest === '>' || rest === '|' || rest === '|-') {
+        let val = '';
+        i++;
+        while (i < lines.length && (lines[i].startsWith('  ') || lines[i].startsWith('\t'))) {
+          val += (val ? ' ' : '') + lines[i].trim(); i++;
+        }
+        obj[key] = val;
+      } else {
+        if (key) obj[key] = rest.replace(/^["']|["']$/g, '');
+        i++;
+      }
+    }
+    return obj;
+  }
+
+  // ─── LOAD JSON ────────────────────────────────────────────────
+  async function loadJSON(path) {
+    try { const r = await fetch(path + '?t=' + Date.now()); return r.ok ? await r.json() : null; }
+    catch(e) { return null; }
+  }
+
+  // ─── PORTFOLIO ────────────────────────────────────────────────
+  let allPhotos = [];
+
+  function renderPortfolio(photos, filter) {
+    const grid = document.getElementById('portfolio-grid');
+    if (!grid) return;
+    const filtered = (!filter || filter === 'all') ? photos : photos.filter(p => (p.category||'').trim() === filter.trim());
+    if (!filtered.length) {
+      grid.innerHTML = '<div style="grid-column:span 12;text-align:center;padding:80px;color:#666;">Aucune photo dans cette catégorie pour l\'instant.</div>';
+      return;
+    }
+    grid.innerHTML = filtered.map(p => `
+      <div class="portfolio-item" data-category="${p.category||''}" data-src="${p.image}" data-title="${p.title||''}">
+        <img src="${p.image}" alt="${p.title||''}" loading="lazy" onerror="this.parentElement.style.background='#1a1a1a';this.style.display='none'">
+        <div class="portfolio-overlay"></div>
+        <div class="portfolio-caption">
+          <span>${p.category||''}</span>
+          <p>${p.title||''}</p>
+        </div>
+      </div>`).join('');
+    grid.querySelectorAll('.portfolio-item').forEach(el => {
+      el.addEventListener('mouseenter', () => { cursor.classList.add('expand'); ring.classList.add('expand'); });
+      el.addEventListener('mouseleave', () => { cursor.classList.remove('expand'); ring.classList.remove('expand'); });
+      el.addEventListener('click', () => openLightbox(el.dataset.src, el.dataset.title));
+    });
+  }
+
+  // Filter tabs
+  document.querySelectorAll('.filter-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      renderPortfolio(allPhotos, tab.dataset.filter);
+    });
+  });
+
+  // ─── TESTIMONIALS ─────────────────────────────────────────────
+  function renderTestimonials(list) {
+    const grid = document.getElementById('testimonials-grid');
+    if (!grid || !list.length) return;
+    grid.innerHTML = list.map(t => `
+      <div class="testimonial-card reveal">
+        <div class="quote-mark">"</div>
+        <blockquote>${t.quote||''}</blockquote>
+        <div class="testimonial-author">
+          <div class="author-avatar">${t.initials||'?'}</div>
+          <div class="author-info">
+            <strong>${t.display_name||t.name||''}</strong>
+            <span>${t.role||''}</span>
+          </div>
+        </div>
+      </div>`).join('');
+    grid.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  }
+
+  // ─── CHARGEMENT CMS ───────────────────────────────────────────
+  async function loadCMSContent() {
+
+    // 1. Infos générales
+    const general = await loadJSON('/content/general.json');
+    if (general) {
+      if (general.email) {
+        const emailEls = [document.getElementById('contact-email'), document.getElementById('footer-email')];
+        emailEls.forEach(el => { if (el) { el.textContent = general.email; el.href = 'mailto:' + general.email; }});
+      }
+      if (general.phone) {
+        const el = document.getElementById('contact-phone');
+        if (el) el.textContent = general.phone;
+      }
+      if (general.zone) {
+        const el = document.getElementById('contact-zone');
+        if (el) el.textContent = general.zone;
+      }
+      if (general.youtube) {
+        const el = document.getElementById('footer-youtube');
+        if (el) el.href = general.youtube;
+      }
+      if (general.instagram) {
+        const el = document.getElementById('footer-instagram');
+        if (el) el.href = general.instagram;
+      }
+    }
+
+    // 2. Stats
+    const stats = await loadJSON('/content/stats.json');
+    if (stats) {
+      ['stat1','stat2','stat3','stat4'].forEach(k => {
+        if (!stats[k]) return;
+        const n = document.getElementById(k+'-num');
+        const l = document.getElementById(k+'-label');
+        if (n) n.textContent = stats[k].number || '';
+        if (l) l.textContent = stats[k].label || '';
+      });
+    }
+
+    // 3. Hero image
+    const hero = await loadJSON('/content/hero.json');
+    if (hero && hero.hero_image && hero.hero_image.trim() !== '') {
+      const container = document.getElementById('hero-img-container');
+      const placeholder = document.getElementById('hero-placeholder');
+      if (container) {
+        if (placeholder) placeholder.remove();
+        const img = document.createElement('img');
+        img.src = hero.hero_image;
+        img.alt = '2T Film Factory';
+        img.style.cssText = 'width:100%;height:100%;object-fit:cover;object-position:center top;filter:contrast(1.05) brightness(0.88);position:absolute;inset:0;';
+        container.appendChild(img);
+      }
+    }
+
+    // 4. About textes + photo
+    const about = await loadJSON('/content/about.json');
+    if (about) {
+      ['p1','p2','p3'].forEach(p => {
+        const el = document.getElementById('about-' + p);
+        if (el && about[p]) el.textContent = about[p];
+      });
+      if (about.photo && about.photo.trim() !== '') {
+        const inner = document.getElementById('about-img-inner');
+        if (inner) {
+          inner.innerHTML = `<img src="${about.photo}" alt="2T Film Factory" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.75) contrast(1.1);">`;
+        }
+      }
+    }
+
+    // 5. Portfolio
+    try {
+      const resp = await fetch('https://api.github.com/repos/lavani2/2tfilmfactory/contents/content/portfolio', {
+        headers: { 'Accept': 'application/vnd.github.v3+json' }
+      });
+      if (resp.ok) {
+        const files = await resp.json();
+        const mdFiles = Array.isArray(files) ? files.filter(f => f.name.endsWith('.md')) : [];
+        const photos = await Promise.all(mdFiles.map(async f => {
+          const r = await fetch(f.download_url + '?t=' + Date.now());
+          return parseFrontmatter(await r.text());
+        }));
+        allPhotos = photos.filter(p => p.image && p.image.trim() !== '').sort((a,b) => (parseInt(a.order)||99)-(parseInt(b.order)||99));
+        renderPortfolio(allPhotos, 'all');
+      } else {
+        document.getElementById('portfolio-grid').innerHTML = '<div style="grid-column:span 12;text-align:center;padding:80px;color:#666;">Ajoutez vos photos depuis le back-office ✦</div>';
+      }
+    } catch(e) { console.error('Portfolio:', e); }
+
+    // 6. Témoignages
+    try {
+      const resp = await fetch('https://api.github.com/repos/lavani2/2tfilmfactory/contents/content/testimonials', {
+        headers: { 'Accept': 'application/vnd.github.v3+json' }
+      });
+      if (resp.ok) {
+        const files = await resp.json();
+        const mdFiles = Array.isArray(files) ? files.filter(f => f.name.endsWith('.md')) : [];
+        const testimonials = await Promise.all(mdFiles.map(async f => {
+          const r = await fetch(f.download_url + '?t=' + Date.now());
+          return parseFrontmatter(await r.text());
+        }));
+        const valid = testimonials.filter(t => t.quote && t.quote.trim() !== '');
+        if (valid.length) renderTestimonials(valid);
+      }
+    } catch(e) { console.error('Témoignages:', e); }
+  }
+
+  loadCMSContent();
+</script>
   let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
 
   document.addEventListener('mousemove', e => {
