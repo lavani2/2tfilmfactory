@@ -1,7 +1,7 @@
 ---
 name: Mariage
 category: Mariage
-title: La mariée
-image: /static/uploads/marie.jpg
+title: Les mariés
+image: /static/uploads/maries.jpg
 order: 4
 ---
