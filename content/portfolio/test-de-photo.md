@@ -1,6 +1,7 @@
 ---
-category: Événements
-title: Bureau
-image: /static/uploads/bureau2.jpg
+name: Mariage
+category: Mariage
+title: La mariée
+image: /static/uploads/marie.jpg
 order: 4
 ---
