@@ -1,8 +1,8 @@
 ---
+name: Saree
 category: Produits
 title: Pongal Saree
 subtitle: Joseph Vijay
-name: Saree
-image: /static/uploads/pongal2.jpg
+image: /static/uploads/pongal.jpg
 order: 3
 ---
